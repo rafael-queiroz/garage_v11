@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: material
+  datasource:
+    driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    url: jdbc:sqlserver://localhost;databaseName=gMax;sendTimeAsDateTime=false
+    username: sa
+    password: Trixrio@
+
+server:
+  port: 8082
+
+#eureka:
+#  instance:
+#    hostname: localhost
+#    port: 8081
+#  client:
+#    registerWithEureka: true
+#    fetchRegistry: false
+#    serviceUrl:
+#      defaultZone: http://${eureka.instance.hostname}:${eureka.instance.port}/eureka/
+#  server:
+#    wait-time-in-ms-when-sync-empty: 3000
