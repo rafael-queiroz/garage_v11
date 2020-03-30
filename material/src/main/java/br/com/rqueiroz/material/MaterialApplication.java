@@ -10,4 +10,9 @@ public class MaterialApplication {
 		SpringApplication.run(MaterialApplication.class, args);
 	}
 
+	/*@Bean
+	public PluginRegistry<LinkDiscoverer, MediaType> discoverers(
+			OrderAwarePluginRegistry<LinkDiscoverer, MediaType> relProviderPluginRegistry) {
+		return relProviderPluginRegistry;
+	}*/
 }

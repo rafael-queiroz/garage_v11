@@ -1,27 +1,31 @@
 package br.com.rqueiroz.material.model;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
-@Entity
-@Table(name = "a_produto")
+
 @Data
-@RequiredArgsConstructor
-@EqualsAndHashCode
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity
+@Table(name = "material")
 public class MaterialEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_produto")
+    @Column(name = "id")
     Long id;
-    
-    @Column(name = "codigo")
-    BigDecimal codigo;
 
+    @NotEmpty
+    @Column(name = "codigo")
+    String codigo;
+
+    @NotEmpty
     @Column(name = "descricao")
     String descricao;
 
@@ -37,28 +41,33 @@ public class MaterialEntity {
     @Column(name = "codigo_de_referencia")
     String codigoDeReferencia;
 
-    @Column(name = "produto_controlado")
+    @NotNull
+    @Column(name = "fg_produto_controlado")
     Boolean produtoControlado;
 
+    @NotNull
     @Column(name = "fg_garantia")
     Boolean garantia;
 
+    @NotNull
     @Column(name = "fg_montagem")
     Boolean produtoDeMontagem;
 
+    @NotNull
     @Column(name = "fg_serializacao")
     Boolean possuiSerializacao;
 
+    @NotNull
     @Column(name = "fg_requisicao_especial")
     Boolean requisicaoEspecial;
 
     @Column(name = "peso_em_kg")
     Double peso;
 
-    @Column(name = "ultimo_valor_comprado", precision = 19, scale = 4)
+    @Column(name = "ultimo_valor_comprado", precision = 19, scale = 2)
     BigDecimal ultimoValorComprado;
 
-    @Column(name = "valor_medio")
+    @Column(name = "valor_medio", precision = 19, scale = 2)
     BigDecimal valorMedio;
 
 }
