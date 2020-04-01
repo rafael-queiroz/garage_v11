@@ -1,4 +1,4 @@
-package br.com.rqueiroz.material.exception;
+package br.com.rqueiroz.material.exception.handler;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

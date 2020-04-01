@@ -4,7 +4,7 @@ package br.com.rqueiroz.material.controller;
 import br.com.rqueiroz.material.model.MaterialEntity;
 import br.com.rqueiroz.material.model.MaterialModel;
 import br.com.rqueiroz.material.model.MaterialModelAssembler;
-import br.com.rqueiroz.material.model.MaterialRepository;
+import br.com.rqueiroz.material.repository.MaterialRepository;
 import br.com.rqueiroz.material.service.MaterialService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -42,10 +42,7 @@ public class MaterialController {
     //@ApiOperation(value = "Find a specific material by your ID" )
     @GetMapping(value = "/{id}", produces = { "application/json", "application/xml", "application/x-yaml" })
     public ResponseEntity<MaterialModel> getMaterialById(@PathVariable(value = "id") Long id){
-        return repository.findById(id)
-                .map(materialModelAssembler::toModel)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+        return ResponseEntity.ok(service.findById(id));
     }
 
 

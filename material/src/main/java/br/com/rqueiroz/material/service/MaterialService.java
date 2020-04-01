@@ -4,7 +4,7 @@ import br.com.rqueiroz.material.converter.DozerConverter;
 import br.com.rqueiroz.material.model.MaterialEntity;
 import br.com.rqueiroz.material.model.MaterialModel;
 import br.com.rqueiroz.material.model.MaterialModelAssembler;
-import br.com.rqueiroz.material.model.MaterialRepository;
+import br.com.rqueiroz.material.repository.MaterialRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PagedResourcesAssembler;
@@ -12,6 +12,7 @@ import org.springframework.hateoas.PagedModel;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
@@ -44,36 +45,10 @@ public class MaterialService {
         repository.delete(entity.get());
     }
 
-    /*
     public MaterialModel findById(Long id) {
-        var entity = repository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("No records found for this ID"));
-        return DozerConverter.parseObject(entity, MaterialModel.class);
+        MaterialEntity entity = repository.findById(id)
+                .orElseThrow(() -> new NoSuchElementException());
+        return materialModelAssembler.toModel(entity);
     }
 
-
-    @Transactional
-    @Validated
-    public MaterialModel create (@Valid MaterialModel material){
-        var entity = DozerConverter.parseObject(material, MaterialEntity.class);
-        var vo = DozerConverter.parseObject(repository.save(entity), MaterialModel.class);
-        return vo;
-    }
-
-    public PagedModel<MaterialModel> findAllPageable(Pageable pageable) {
-        Page<MaterialEntity> materialEntities = repository.findAll(pageable);
-        PagedModel<MaterialModel> materialModelsPage = pagedResourcesAssembler.toModel(materialEntities, assembler);
-        return materialModelsPage;
-    }
-
-
-
-
-
-    // PRIVATE METHODS
-    MaterialModel convertToMaterial(MaterialEntity entity) {
-        return DozerConverter.parseObject(entity, MaterialModel.class);
-    }
-    /*
-     */
 }

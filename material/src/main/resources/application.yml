@@ -9,21 +9,28 @@ spring:
   jpa:
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+        dialect: org.hibernate.dialect.MySQL8Dialect
     hibernate:
-      ddl-auto: update
+      ddl-auto: none
 
     show-sql: false
 
 # Flyway Configs
-#flyway:
-#  url: jdbc:mysql://localhost:3306/
-#  schemas: garage
-#  user: root
-#  password: Trixrio@
+flyway:
+  url: jdbc:mysql://localhost:3306/
+  schemas: garage
+  user: root
+  password: Trixrio@
 
 server:
   port: 8082
+
+# Security
+security:
+  jwt:
+    token:
+      secret-key: secret
+      expire-length: 3600000 #1h
 
 #eureka:
 #  instance:
